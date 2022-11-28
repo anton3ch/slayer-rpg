@@ -1,30 +1,48 @@
 export default class Entity {
-  constructor(name) {
+  constructor(name, health, armor, damage, speed) {
     this.name = name;
-    this.healthStat = 90-100;
-    this.armorStat = 5-10;
-    this.damageStat = 10-20;
-    this.speedStat = 1-10; 
+    this.healthStat = health;
+    this.armorStat = armor;
+    this.damageStat = damage;
+    this.speedStat = speed; 
   }  
 }
 function randomizer(max, min) {
-// generating a random number
-const a = Math.floor(Math.random() * (max - min + 1)) + min;
-return a
+  const a = Math.floor(Math.random() * (max - min + 1)) + min;
+  return a
 }
 
-function newBattle() {
-  let randomhealht = randomizer()
-  let player = new Entity('sam', randomizer(90,100), randomizer(5,100));
-  player.speedStat = 2
-  let enemy = new Entity("snake");
+function onload() {
+  let playerHealth = randomizer(100, 90);
+  let playerArmor = randomizer(10, 5);
+  let playerDmg = randomizer(20, 10);
+  let playerSpeed = randomizer(10, 1);
+  let player = new Entity('sam', playerHealth, playerArmor, playerDmg, playerSpeed);
   return player;
 }
-// button for attack
-// button for run
+
+function newBattle(player) {
+  let enemyHealth = randomizer(100, 90);
+  let enemyArmor = randomizer(10, 5);
+  let enemyDmg = randomizer(20, 10);
+  let enemySpeed = randomizer(10, 1);
+  let enemy = new Entity('snake', enemyHealth, enemyArmor, enemyDmg, enemySpeed);
+}
 
 function attack(player, enemy) {
   let damage = player.damageStat - enemy.armorStat;
   enemy.healthStat -= damage;
   //increment turn function
 }
+//ui
+window.addEventListener("load", () => {
+  let player;
+  player = onload();
+  newBattle(player);
+  document.getElementById("attack").addEventListener('click', attack);
+  document.getElementById("run").addEventListener('run', attack);
+})
+
+Turn 1
+
+
