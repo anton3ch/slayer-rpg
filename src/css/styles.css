@@ -1,3 +1,23 @@
 body {
-  background-color: lightblue;
+  background-color: rgb(255, 235, 195);
+  background-image: url(./../../assets/img/grass-bg.png);
+  background-repeat: repeat;
+}
+
+#char {
+  position: absolute;
+  left: 10%;
+  top: 10%;
+  transform: translateY(10%);
+}
+
+/* #top-left {
+  border: 5px solid rgb(255, 255, 255);
+  display: block;
+  z-index: 2;
+} */
+
+area {
+  border: 5px solid rgb(255, 255, 255);
+  z-index: 2;
 }

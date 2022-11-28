@@ -1,0 +1,10 @@
+body {
+  background-color: rgb(255, 235, 195);
+}
+
+#char {
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  transform: translateY(50%);
+}
