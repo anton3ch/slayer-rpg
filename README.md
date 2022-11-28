@@ -3,7 +3,7 @@
 #### (Brief Description of Application)
 
 #### By Alex Johnson
-#### Brian 
+#### Brian Noh
 #### Aitana 
 #### Anton Ch
 #### Daniel Yakovlev
