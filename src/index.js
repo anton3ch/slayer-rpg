@@ -7,7 +7,8 @@ window.addEventListener("load", function() {
     console.log("you clicked me");
     let char = document.getElementById("char");
     char.style.left = "50%";
-
+    document.getElementById("base").setAttribute("class", "hidden");
+    document.getElementById("island").removeAttribute("class");
   })
 
 

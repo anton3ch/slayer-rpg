@@ -11,6 +11,15 @@ body {
   transform: translateY(10%);
 }
 
+map {
+  /* position: absolute; */
+  left: 50%;
+  top: 50%;
+  /* transform: translateY(-50%); */
+  transform: translateX(-50%);
+}
+
+
 /* #top-left {
   border: 5px solid rgb(255, 255, 255);
   display: block;
@@ -20,4 +29,13 @@ body {
 area {
   border: 5px solid rgb(255, 255, 255);
   z-index: 2;
+}
+
+.hidden {
+  display: none;
+}
+
+div {
+  display: flex;
+  justify-content: center;
 }
