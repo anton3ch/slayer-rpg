@@ -1,10 +1,47 @@
 body {
   background-color: rgb(255, 235, 195);
+  background-image: url(./../../assets/img/grass-bg.png);
+  background-repeat: repeat;
 }
 
 #char {
   position: absolute;
   left: 10%;
+  top: 10%;
+  transform: translateY(10%);
+}
+
+map {
+  /* position: absolute; */
+  left: 50%;
   top: 50%;
-  transform: translateY(50%);
+  /* transform: translateY(-50%); */
+  transform: translateX(-50%);
+}
+
+#nav, #story {
+  display: block;
+  margin: auto;
+  padding: 1rem;
+  width: 775px;
+}
+
+/* #top-left {
+  border: 5px solid rgb(255, 255, 255);
+  display: block;
+  z-index: 2;
+} */
+
+area {
+  border: 5px solid rgb(255, 255, 255);
+  z-index: 2;
+}
+
+.hidden {
+  display: none;
+}
+
+div {
+  display: flex;
+  justify-content: center;
 }

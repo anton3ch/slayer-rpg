@@ -5,20 +5,54 @@ body {
 }
 
 #char {
-  position: absolute;
+  position: relative;
+  width: 67px;
+  height: 80px;
   left: 10%;
   top: 10%;
-  transform: translateY(10%);
+  transform: translateY(-10%);
 }
 
-map {
+.container {
   /* position: absolute; */
-  left: 50%;
+  display: grid;
+  /* width: 1500px; */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  /* left: 50%;
   top: 50%;
-  /* transform: translateY(-50%); */
-  transform: translateX(-50%);
+  transform: translateY(-50%);
+  transform: translateX(-50%); */
+  place-items: center; 
+  /* background-color: aliceblue; */
+  max-width: 60%;
+  margin: auto;
+}
+.maps {
+  grid-column: 1 / 3;
+  grid-row: 1;
+}
+/* 
+#nav {
+  grid-column: 4;
+  grid-row: 1;
+  background-color: blue;
+} */
+
+#text {
+  grid-column: 4;
+  grid-row: 1;
+  width: 25rem;
+  background-color: rgb(229, 255, 0);
+  display: flex;
+  /* flex-flow: column; */
 }
 
+#nav, #story {
+  display: block;
+  margin: auto;
+  padding: 1rem;
+}
 
 /* #top-left {
   border: 5px solid rgb(255, 255, 255);
@@ -26,10 +60,10 @@ map {
   z-index: 2;
 } */
 
-area {
+/* area {
   border: 5px solid rgb(255, 255, 255);
   z-index: 2;
-}
+} */
 
 .hidden {
   display: none;

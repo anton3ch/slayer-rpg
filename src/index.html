@@ -5,21 +5,33 @@
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 <body>
-  <img src="./../assets/img/character.png" alt="char" id="char">
+  <div class="container">
+    
+    <div class="maps">
+      <img src="./../assets/img/character.png" alt="char" id="char">
 
-  <div id="base">
-    <img src="./../assets/img/bg1.png" alt="basemap" usemap="#basemap">
-    <map name="basemap">
-      <area onblur="this.focus()" autofocus id="top-left" coords="17,10,261,210" shape="rect"> <!--instead of href to an HTML page, we would use JavaScript click event listener-->
-    </map>
+      <div id="base">
+        <img src="./../assets/img/bg1.png" alt="basemap" usemap="#basemap">
+        <map name="basemap">
+          <area onblur="this.focus()" autofocus id="top-left" coords="17,10,261,210" shape="rect"> <!--instead of href to an HTML page, we would use JavaScript click event listener-->
+        </map>
+      </div>
+      <div id="island" class="hidden">
+        <img src="./../assets/img/island-scene.png" alt="basemap" usemap="#islandmap">
+        <map name="islandmap">
+          <area id="island" alt="island" coords="317,638,228,449" shape="rect">
+        </map>
+      </div>
+    </div>
+
+    <div id="text">
+      <div id="nav">
+        Nav bar
+      </div>
+      <div id="story">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lectus tellus, ultrices ut imperdiet a, tempus in sem. Aliquam rhoncus nunc tellus, vel varius dui dignissim ut. Praesent vel ipsum tellus. Vestibulum vel rutrum dolor. Phasellus porta placerat aliquet. Sed elementum sit amet lectus volutpat placerat. Vestibulum tempus tortor vel lacus dictum maximus. Donec ullamcorper porta lacinia. Vivamus malesuada sem at purus consectetur, at accumsan purus luctus. In interdum dignissim sem sit amet eleifend. Suspendisse vitae dictum velit, ac semper ex. Fusce pretium velit ut lectus porttitor, sed aliquam felis rutrum. Praesent lobortis ornare orci id facilisis. Nulla vitae blandit eros. Aliquam convallis libero lobortis ipsum iaculis, molestie fringilla lectus commodo.</p>
+      </div>
+    </div>
   </div>
-
-  <div id="island" class="hidden">
-    <img src="./../assets/img/island-scene.png" alt="basemap" usemap="#islandmap">
-    <map name="islandmap">
-      <area id="island" alt="island" coords="317,638,228,449" shape="rect">
-    </map>
-  </div>
-
 </body>
 </html>
