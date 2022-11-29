@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 body {
   background-color: rgb(255, 235, 195);
   background-image: url(./../../assets/img/grass-bg.png);
   background-repeat: repeat;
+  font-family: 'VT323', monospace;
 }
 
 #char {
@@ -10,6 +13,14 @@ body {
   height: 80px;
   left: 470px;
   top: 270px;
+}
+
+#enemy {
+  position: relative;
+  left: 500px;
+  top: 400px;
+  width: 76px;
+  height: 103px;
 }
 
 .container {
@@ -42,8 +53,8 @@ body {
 #text {
   grid-column: 3;
   grid-row: 1;
-  background: rgb(34,193,195);
-  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253, 187, 45, 0.585) 100%);
+  background: rgb(221,209,209);
+  background: radial-gradient(circle, rgba(221,209,209,0.8421743697478992) 0%, rgba(154,154,154,0.7329306722689075) 100%);
   display: flex;
   flex-flow: column;
   min-width: 300px;
@@ -95,6 +106,14 @@ div {
 
 }
 
+.secondMove {
+  position: relative;
+  animation-name: secondMove;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+
+}
+
 /* .move-back {
   position: relative;
   animation-duration: 4s;
@@ -105,6 +124,13 @@ div {
 @keyframes move {
 
   100%   { transform: translateY(300px); }   
+  
+}
+
+@keyframes secondMove {
+  0% { top: 50px;
+    left: 550px; }
+  100%   { transform: translateY(350px); }   
   
 }
 

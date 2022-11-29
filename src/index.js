@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 window.addEventListener("load", function() {
   let char = document.getElementById("char");
+  let enemy = document.getElementById("enemy");
 
   document.getElementById("top-left").addEventListener('click', function() {
     console.log("you clicked me");
@@ -19,11 +20,17 @@ window.addEventListener("load", function() {
   char.addEventListener('animationend', function () {
     console.log("animation ended");
     char.removeAttribute("class", "move");
-    char.setAttribute("top", "20px"); // does not work, character just reverts to original position
+    char.style.top = "10px";
+    char.setAttribute("class", "secondMove");
+    enemy.removeAttribute("class", "hidden");
   });
 });
 
-document.getElementById("island").addEventListener('click', function() {
+document.getElementById("island-click").addEventListener('click', function() {
+ // let char = document.getElementById("char");
   document.getElementById("island").setAttribute("class", "hidden");
   document.getElementById("thirdmap").removeAttribute("class");
+  // setTimeout(() => {
+    // char.setAttribute("class", "secondMove");
+  // }, 4000);
 });
