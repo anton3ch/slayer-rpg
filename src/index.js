@@ -15,3 +15,4 @@ window.addEventListener("load", function() {
     document.getElementById("island").removeAttribute("class");
   });
 });
+
