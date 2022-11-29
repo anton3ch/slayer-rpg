@@ -8,15 +8,15 @@ body {
   position: relative;
   width: 67px;
   height: 80px;
-  left: 220px;
-  top: 80px;
+  left: 470px;
+  top: 270px;
 }
 
 .container {
   /* position: absolute; */
   display: grid;
   /* width: 1500px; */
-  grid-template-columns: repeat(4);
+  grid-template-columns: repeat(3);
   /* left: 50%;
   top: 50%;
   transform: translateY(-50%);
@@ -28,7 +28,7 @@ body {
 }
 
 .maps {
-  grid-column: 1 / 3;
+  grid-column: 2 / 3;
   grid-row: 1;
   /* width: 640px;
   height: 640px; */
@@ -42,7 +42,7 @@ body {
 } */
 
 #text {
-  grid-column: 4;
+  grid-column: 3;
   grid-row: 1;
   background: rgb(34,193,195);
   background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253, 187, 45, 0.585) 100%);
@@ -93,12 +93,33 @@ div {
 .move {
   position: relative;
   animation-name: move;
-  animation-duration: 5s;
+  animation-duration: 4s;
   animation-fill-mode: forwards;
 }
 
+/* .move-back {
+  position: relative;
+  animation-duration: 4s;
+  animation-fill-mode: backwards;
+  animation: move 10s steps(10) infinite alternate; 
+} */
+
 @keyframes move {
   100%   {
-    transform: translate(200px, 150px);
+    transform: translateY(300px);
   }
 }
+
+/* @keyframes char {  */
+
+/* 0%   {left: 0px; top: 0px;} */
+
+/* 25%  {left: 200px; top: 0px;} // frame2 */
+
+/* 50%  {left: 200px; top: 200px;}*/
+
+/* 75%  {left: 0px; top: 200px;} */
+
+/* 100% {left: 0px; top: 0px;}  */
+
+/* } */
