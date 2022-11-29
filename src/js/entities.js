@@ -24,7 +24,12 @@ export default class Entity {
     this.speedStat = randomizer(10, 1);
   };
 
+  attack(entity) {
+    let damage = this.damageStat - entity.armorStat;
+    entity.healthStat -= damage;
+  }
 }
+
 //ui
 // window.addEventListener("load", () => {
 //   let player;
