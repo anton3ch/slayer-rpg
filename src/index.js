@@ -23,3 +23,7 @@ window.addEventListener("load", function() {
   });
 });
 
+document.getElementById("island").addEventListener('click', function() {
+  document.getElementById("island").setAttribute("class", "hidden");
+  document.getElementById("thirdmap").removeAttribute("class");
+});
