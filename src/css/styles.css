@@ -9,8 +9,7 @@ body {
   width: 67px;
   height: 80px;
   left: 220px;
-  top: 100px;
-  transform: translateY(-10%);
+  top: 80px;
 }
 
 .container {
@@ -30,6 +29,8 @@ body {
 .maps {
   grid-column: 1 / 3;
   grid-row: 1;
+  /* width: 640px;
+  height: 640px; */
 }
 /* 
 #nav {
@@ -80,7 +81,21 @@ div {
   src: url(./../../assets/fonts/AncientModernTales-a7Po.ttf);
 }
 
-h1 {
+.header {
   font-family: Ancient;
   font-size:100px;
+  color:rgb(238, 224, 164);
+}
+
+.move {
+  position: relative;
+  animation-name: move;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+
+}
+
+@keyframes move {
+
+  100%   { transform: translate(200px, 150px); }   
 }
