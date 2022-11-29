@@ -8,8 +8,8 @@ body {
   position: relative;
   width: 67px;
   height: 80px;
-  left: 220px;
-  top: 80px;
+  left: 470px;
+  top: 270px;
 }
 
 .container {
@@ -90,12 +90,22 @@ div {
 .move {
   position: relative;
   animation-name: move;
-  animation-duration: 5s;
+  animation-duration: 4s;
   animation-fill-mode: forwards;
+  /* animation: move 10s steps(10) infinite alternate; */
 
 }
 
 @keyframes move {
 
-  100%   { transform: translate(200px, 150px); }   
+  100%   { transform: translateY(300px); }   
+  
 }
+
+/* @keyframes char {  */
+  /* 0%   {background: red; left: 0px; top: 0px;} */
+  /* 25%  {background: yellow; left: 200px; top: 0px;} // frame2 */
+  /* 50%  {background: blue; left: 200px; top: 200px;}*/
+  /* 75%  {background: green; left: 0px; top: 200px;} */
+  /* 100% {background: red; left: 0px; top: 0px;}  */
+/* } */
