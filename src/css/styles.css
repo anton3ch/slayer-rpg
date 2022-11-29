@@ -8,8 +8,8 @@ body {
   position: relative;
   width: 67px;
   height: 80px;
-  left: 10%;
-  top: 10%;
+  left: 220px;
+  top: 100px;
   transform: translateY(-10%);
 }
 
@@ -24,7 +24,7 @@ body {
   transform: translateX(-50%); */
   place-items: center; 
   /* background-color: aliceblue; */
-  max-width: 60%;
+  max-width: 80%;
   margin: auto;
 }
 .maps {
@@ -41,12 +41,11 @@ body {
 #text {
   grid-column: 4;
   grid-row: 1;
-  width: 25rem;
   background: rgb(34,193,195);
-  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253, 187, 45, 0.585) 100%);
   display: flex;
   flex-flow: column;
-  width: 100%;
+  min-width: 300px;
   height: 100%;
 }
 
@@ -74,4 +73,14 @@ body {
 div {
   display: flex;
   justify-content: center;
+}
+
+@font-face {
+  font-family: Ancient;
+  src: url(./../../assets/fonts/AncientModernTales-a7Po.ttf);
+}
+
+h1 {
+  font-family: Ancient;
+  font-size:100px;
 }
