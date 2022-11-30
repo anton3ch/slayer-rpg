@@ -24,24 +24,30 @@ function drawBattle (battle) {
   document.getElementById("player-health").innerText = battle.player.healthStat;
 }
 
-function fight() {
+
+function waitForMe(ms) {
+  return new Promise(resolve => {
+    setTimeout(() => { resolve("") }, ms)
+  });
+}
+async function fight() {
   let battle = document.getElementById("fight").myBattle;
   let player = battle.player;
   let enemy = battle.enemy;
   drawBattle(battle);
-  // setTimeout(() => {
+  document.getElementById('fight').setAttribute('disabled', 'true');
   battle.fight(player, enemy);
-  // }, 1000);
+  await waitForMe(1000);
+  document.getElementById('fight').removeAttribute('disabled', 'true');
   if (!battle.inBattle) {
-    //display who won
     displayWinner(player, enemy);
     stopFight(player, battle);
   }
-  // setTimeout(() => {
-  battle.fight(player, enemy);
-  // }, 1000);
+  
+  setTimeout(() => {
+    battle.fight(player, enemy);
+  }, 1000);
   if (!battle.inBattle) {
-    //display who won
     displayWinner(player, enemy);
     stopFight(player, battle);
   }
@@ -75,6 +81,7 @@ function battleStart() {
   document.getElementById("fight").myBattle = battle;
   drawBattle(battle);
   // document.getElementById("heal").addEventListener("click", waitResponse, "heal");
+  // document.getElementById("flee").addEventListener("click", waitResponse, "flee")
 }
 
 function initiateBattle() {
@@ -96,8 +103,6 @@ function initiateBattle() {
     enemy.style.top ="225px";
   }, 1000);
 }
-
-
 
 //battle event listener
 window.addEventListener("load", function () {
@@ -122,10 +127,10 @@ window.addEventListener("load", function() {
       document.getElementById("secondmap").removeAttribute("class");
       $("#bottom-arrow").hide();
       $("#battleStats").show();
+
     }, 4000);
   });
 
-// battle initiation button appears
   char.addEventListener('animationend', function () {
     char.removeAttribute("class", "move");
     char.style.top = "10px";
@@ -138,15 +143,16 @@ window.addEventListener("load", function() {
   });
 });
 
-document.getElementById("secondmap-click").addEventListener('click', function() {
-
+document.getElementById("bottom-arrow").addEventListener('click', function() {
   let char = document.getElementById("char");
-  document.getElementById("secondmap").setAttribute("class", "hidden");
+  document.getElementById("island").setAttribute("class", "hidden");
   document.getElementById("thirdmap").removeAttribute("class");
   char.addEventListener('animationend', function () {
+    console.log("second animation ended");
     setTimeout(() => {
       battleStart();
       document.getElementById('sidebar-heading').setAttribute('class', 'hidden');
+      console.log("battle start");
       document.getElementById("battleStats").removeAttribute("class", "hidden");
     }, 2000);
   });
