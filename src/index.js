@@ -85,7 +85,6 @@ function battleStart() {
 }
 
 function initiateBattle() {
-  console.log("ello");
   document.getElementById("secondmap").setAttribute("class", "shake");
   setTimeout(function(){
     let char = document.getElementById("char");
@@ -120,7 +119,6 @@ window.addEventListener("load", function() {
 
 // player move to second map
   document.getElementById("bottom-arrow").addEventListener('click', function() {
-    console.log("clickety click")
     char.setAttribute("class", "move");
     setTimeout(() => {
       document.getElementById("base").setAttribute("class", "hidden");
