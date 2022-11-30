@@ -18,19 +18,33 @@ window.addEventListener("load", function() {
   });
 
   char.addEventListener('animationend', function () {
-    console.log("animation ended");
     char.removeAttribute("class", "move");
     char.style.top = "10px";
     char.setAttribute("class", "secondMove");
     enemy.removeAttribute("class", "hidden");
+    setTimeout(() => {
+      document.getElementById("battleStats").removeAttribute("class", "hidden");
+    }, 2000);
   });
 });
 
 document.getElementById("island-click").addEventListener('click', function() {
- // let char = document.getElementById("char");
+  let char = document.getElementById("char");
   document.getElementById("island").setAttribute("class", "hidden");
   document.getElementById("thirdmap").removeAttribute("class");
-  // setTimeout(() => {
-    // char.setAttribute("class", "secondMove");
-  // }, 4000);
+  char.addEventListener('animationend', function () {
+    console.log("second animation ended");
+    setTimeout(() => {
+      console.log("battle start");
+      document.getElementById("battleStats").removeAttribute("class", "hidden");
+    }, 2000);
+  });
+});
+
+document.getElementById("fightBtn").addEventListener("click", () => {
+  // startBattle();
+});
+
+document.getElementById("fleeBtn").addEventListener("click", () => {
+  // fleeBattle();
 });
