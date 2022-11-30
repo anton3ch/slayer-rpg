@@ -19,44 +19,63 @@ function retrieveObject(keyword){
   return object;
 }
 
-// function waitResponse(type){
-//   if (type === "fight"){
+//draws health to battle
+function drawBattle (battle) {
+  document.getElementById("enemy-health").innerText = battle.enemy.healthStat;
+  document.getElementById("player-health").innerText = battle.player.healthStat;
+}
 
-//   }
-//   else if
-// }
+function fight() {
+  let battle = document.getElementById("fight").myBattle;
+  let player = battle.player;
+  let enemy = battle.enemy;
+  drawBattle(battle);
+  // setTimeout(() => {
+    battle.fight(player, enemy);
+  // }, 1000);
+  if (!battle.inBattle) {
+    //display who won
+    displayWinner(player, enemy);
+    stopFight(player, battle);
+  }
+  // setTimeout(() => {
+    battle.fight(player, enemy);
+  // }, 1000);
+  if (!battle.inBattle) {
+    //display who won
+    displayWinner(player, enemy);
+    stopFight(player, battle);
+  }
+  drawBattle(battle);
+}
 
+function displayWinner(player, enemy) {
+  //check who won and output
+  if (player.healthStat <= 0) {
+    document.getElementById('battle-results').innerText = `${enemy.name} wins!`
+  } else if (enemy.healthStat <= 0) {
+    document.getElementById('battle-results').innerText = `${player.name} wins!`
+  }
+}
 
-async function battleStart() {
+function stopFight(player) {
+  document.getElementById("fight").removeEventListener("click", fight);
+  // document.getElementById("heal")removeEventListener("click", heal);
+  // document.getElementById("flee")removeEventListener("click", flee);
+  storeObject("player", player)
+}
+
+function battleStart() {
+  console.log("battle started");
   let player = retrieveObject("player");
   let enemy = new Entity("enemy");
   enemy.enemyStats();
   let battle = new Battle("battle1", player, enemy, "forest");
-
-  // document.getElementById("fight").addEventListener("click", )
+  battle.firstTurn(player, enemy);
+  document.getElementById("fight").addEventListener("click", fight);
+  document.getElementById("fight").myBattle = battle;
+  drawBattle(battle);
   // document.getElementById("heal").addEventListener("click", waitResponse, "heal");
-  // document.getElementById("flee")
-  //battle logic
-  while(battle.inBattle) {
-    let response = window.prompt();
-    switch(response){
-    case 'fight':
-      //fight logic
-      battle.fight(player, enemy);
-      console.log("pow!");
-      break;
-    case 'heal':
-      //heal logic
-      battle.heal(player);
-      break;
-    case 'flee':
-      //flee logic
-      battle.tacticalRetreat(player, enemy);
-    }
-    battle.inBattle = false;
-  }
-}
-
 
 function initiateBattle() {
   document.getElementById("island").setAttribute("class", "shake");
@@ -77,16 +96,14 @@ function initiateBattle() {
   }, 1000);
 }
 
-
-document.getElementById("fightBtn").addEventListener("click", initiateBattle);
-
+document.getElementById("battle-start").addEventListener("click", initiateBattle);
+}
+      
 //battle event listener
 window.addEventListener("load", function () {
   let player = new Entity("john");
   storeObject("player", player);
-  document.getElementById("start-battle").addEventListener("click", battleStart);
 });
-
 
 //map event listener
 window.addEventListener("load", function() {
@@ -100,7 +117,6 @@ window.addEventListener("load", function() {
       document.getElementById("island").removeAttribute("class");
       $("#bottom").hide();
     }, 4000);
-    
   });
 
   char.addEventListener('animationend', function () {
@@ -109,10 +125,11 @@ window.addEventListener("load", function() {
     char.setAttribute("class", "secondMove");
     enemy.removeAttribute("class", "hidden");
     setTimeout(() => {
+      battleStart();
+      document.getElementById('sidebar-heading').setAttribute('class', 'hidden');
       document.getElementById("battleStats").removeAttribute("class", "hidden");
-    }, 2000);
+    }, 3000);
   });
-
 });
 
 document.getElementById("island-click").addEventListener('click', function() {
@@ -122,16 +139,10 @@ document.getElementById("island-click").addEventListener('click', function() {
   char.addEventListener('animationend', function () {
     console.log("second animation ended");
     setTimeout(() => {
+      battleStart();
+      document.getElementById('sidebar-heading').setAttribute('class', 'hidden');
       console.log("battle start");
       document.getElementById("battleStats").removeAttribute("class", "hidden");
     }, 2000);
   });
-});
-
-document.getElementById("fightBtn").addEventListener("click", () => {
-  // startBattle();
-});
-
-document.getElementById("fleeBtn").addEventListener("click", () => {
-  // fleeBattle();
 });
