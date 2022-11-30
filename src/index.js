@@ -75,8 +75,8 @@ function battleStart() {
   document.getElementById("fight").myBattle = battle;
   drawBattle(battle);
   // document.getElementById("heal").addEventListener("click", waitResponse, "heal");
-
 }
+
 function initiateBattle() {
   console.log("ello");
   document.getElementById("secondmap").setAttribute("class", "shake");
@@ -97,7 +97,8 @@ function initiateBattle() {
   }, 1000);
 }
 
-      
+
+
 //battle event listener
 window.addEventListener("load", function () {
   let player = new Entity("john");
@@ -106,19 +107,15 @@ window.addEventListener("load", function () {
 
 //map event listener
 window.addEventListener("load", function() {
+
+  document.getElementById("battle-start").addEventListener("click", initiateBattle);
+  
   let char = document.getElementById("char");
   let enemy = document.getElementById("enemy");
 
-
-  document.getElementById("top-left").addEventListener('click', function() {
-    console.log("you clicked me");
-    char.setAttribute("class", "move");
-    setTimeout(() => {
-      document.getElementById("base").setAttribute("class", "hidden");
-      document.getElementById("island").removeAttribute("class");
-
 // player move to second map
   document.getElementById("bottom-arrow").addEventListener('click', function() {
+    console.log("clickety click")
     char.setAttribute("class", "move");
     setTimeout(() => {
       document.getElementById("base").setAttribute("class", "hidden");
