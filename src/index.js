@@ -83,7 +83,27 @@ function battleStart() {
   // document.getElementById("heal").addEventListener("click", waitResponse, "heal");
   // document.getElementById("flee").addEventListener("click", waitResponse, "flee")
 }
-      
+
+function initiateBattle() {
+  console.log("ello");
+  document.getElementById("secondmap").setAttribute("class", "shake");
+  setTimeout(function(){
+    let char = document.getElementById("char");
+    let enemy = document.getElementById("enemy");
+    $("#basemap").hide();
+    $("#secondmap").hide();
+    $("#thirdmap").hide();
+    $("#battle").show();
+    $("#controls").show();
+    $("#stats").show();
+    $("#battle-start").hide();
+    char.style.left ="390px";
+    enemy.style.left ="450px";
+    char.style.top ="-80px";
+    enemy.style.top ="225px";
+  }, 1000);
+}
+
 //battle event listener
 window.addEventListener("load", function () {
   let player = new Entity("john");
@@ -92,15 +112,22 @@ window.addEventListener("load", function () {
 
 //map event listener
 window.addEventListener("load", function() {
+
+  document.getElementById("battle-start").addEventListener("click", initiateBattle);
+  
   let char = document.getElementById("char");
   let enemy = document.getElementById("enemy");
 
-  document.getElementById("top-left").addEventListener('click', function() {
-    console.log("you clicked me");
+// player move to second map
+  document.getElementById("bottom-arrow").addEventListener('click', function() {
+    console.log("clickety click")
     char.setAttribute("class", "move");
     setTimeout(() => {
       document.getElementById("base").setAttribute("class", "hidden");
-      document.getElementById("island").removeAttribute("class");
+      document.getElementById("secondmap").removeAttribute("class");
+      $("#bottom-arrow").hide();
+      $("#battleStats").show();
+
     }, 4000);
   });
 
