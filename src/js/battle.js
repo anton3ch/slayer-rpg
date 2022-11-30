@@ -10,10 +10,11 @@ export default class Battle {
     this.enemy = enemy;
     this.setting = setting;
     this.turn = 0; // % 2 = 0 player turn | % 2 = 1 enemy turn
+    this.inBattle = true;
   }
 
   firstTurn(player, enemy) {
-    if (playerIsFast(player, enemy)) {
+    if (this.playerIsFast(player, enemy)) {
       this.turn = 0;
       return;
     }
@@ -30,46 +31,48 @@ export default class Battle {
   }
 
   fight(player, enemy) {
-    checkTurn(player, enemy);
-    checkHealth(player, enemy)
+    this.checkTurn(player, enemy);
+    this.combatEnd(player, enemy)
   }
 
   tacticalRetreat(player, enemy) {
     try {
-      if (!playerIsFast(player, enemy)) {
+      if (!this.playerIsFast(player, enemy)) {
         let error = "too slow";
         throw new Error(error);
       } else {
-        exit;
+        this.inBattle = false;
       }
     }
     catch(error) {
       return error;
     }
   }
-}
-
-function playerIsFast(player, enemy) {
-  if (player.speedStat >= enemy.speedStat) {
-    return true;
+  
+  combatEnd(player, enemy) {
+    if (player.healthStat < 0) {
+      this.inBattle = false;
+      return 'enemy wins';
+    } else if (enemy.healthStat < 0) {
+      this.inBattle = false;
+      return 'player wins';
+    }
   }
-  return false;
-} 
 
-function checkTurn() {
-  if (this.turn % 2 === 0) { 
-    player.attack(enemy);
-    this.turn++;
-  } else {
-    enemy.attack(player);
-    this.turn++;
-  }
-}
-
-function checkHealth(player, enemy) {
-  if (player.healthStat > 0 || enemy.healthStat > 0) {
-    return true;
-  } else {
+  playerIsFast(player, enemy) {
+    if (player.speedStat >= enemy.speedStat) {
+      return true;
+    }
     return false;
-  }   
+  } 
+  
+  checkTurn() {
+    if (this.turn % 2 === 0) { 
+      player.attack(enemy);
+      this.turn++;
+    } else {
+      enemy.attack(player);
+      this.turn++;
+    }
+  }
 }
