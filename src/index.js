@@ -2,7 +2,8 @@ import './css/styles.css';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import Character from './js/character.js';
-// import $ from 'jquery'; // $ npm i jquery
+import $ from "jquery";
+// $ npm i jquery
 import Entity from './js/entities.js';
 import Battle from './js/battle.js';
 
@@ -39,23 +40,45 @@ async function battleStart() {
   while(battle.inBattle) {
     let response = window.prompt();
     switch(response){
-      case 'fight':
-        //fight logic
-        battle.fight(player, enemy)
-        break;
-      case 'heal':
-        //heal logic
-        battle.heal(player);
-        break;
-      case 'flee':
-        //flee logic
-        battle.tacticalRetreat(player, enemy);
+    case 'fight':
+      //fight logic
+      battle.fight(player, enemy);
+      console.log("pow!");
+      break;
+    case 'heal':
+      //heal logic
+      battle.heal(player);
+      break;
+    case 'flee':
+      //flee logic
+      battle.tacticalRetreat(player, enemy);
     }
     battle.inBattle = false;
   }
-
-  
 }
+
+
+function initiateBattle() {
+  document.getElementById("island").setAttribute("class", "shake");
+  setTimeout(function(){
+    let char = document.getElementById("char");
+    let enemy = document.getElementById("enemy");
+    $("#basemap").hide();
+    $("#island").hide();
+    $("#thirdmap").hide();
+    $("#battle").show();
+    $("#controls").show();
+    $("#stats").show();
+    $("#fightBtn").hide();
+    char.style.left ="390px";
+    enemy.style.left ="450px";
+    char.style.top ="-80px";
+    enemy.style.top ="225px";
+  }, 1000);
+}
+
+
+document.getElementById("fightBtn").addEventListener("click", initiateBattle);
 
 //battle event listener
 window.addEventListener("load", function () {
@@ -71,11 +94,11 @@ window.addEventListener("load", function() {
   let enemy = document.getElementById("enemy");
 
   document.getElementById("top-left").addEventListener('click', function() {
-    console.log("you clicked me");
     char.setAttribute("class", "move");
     setTimeout(() => {
       document.getElementById("base").setAttribute("class", "hidden");
       document.getElementById("island").removeAttribute("class");
+      $("#bottom").hide();
     }, 4000);
     
   });
