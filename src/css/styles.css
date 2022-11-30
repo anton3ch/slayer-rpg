@@ -30,7 +30,7 @@ body {
   height: 60px;
   animation: point 3s ease-in-out infinite;
   cursor: pointer;
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 .container {
