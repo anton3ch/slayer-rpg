@@ -93,14 +93,13 @@ window.addEventListener("load", function() {
   let char = document.getElementById("char");
   let enemy = document.getElementById("enemy");
 
-  document.getElementById("top-left").addEventListener('click', function() {
+  document.getElementById("bottom-arrow").addEventListener('click', function() {
     char.setAttribute("class", "move");
     setTimeout(() => {
       document.getElementById("base").setAttribute("class", "hidden");
       document.getElementById("island").removeAttribute("class");
-      $("#bottom").hide();
+      $("#bottom-arrow").hide();
     }, 4000);
-    
   });
 
   char.addEventListener('animationend', function () {
