@@ -2,8 +2,7 @@ import './css/styles.css';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import Character from './js/character.js';
-import $ from "jquery";
-// $ npm i jquery
+// import $ from 'jquery'; // $ npm i jquery
 import Entity from './js/entities.js';
 import Battle from './js/battle.js';
 
@@ -76,6 +75,7 @@ function battleStart() {
   document.getElementById("fight").myBattle = battle;
   drawBattle(battle);
   // document.getElementById("heal").addEventListener("click", waitResponse, "heal");
+
 }
 function initiateBattle() {
   console.log("ello");
@@ -97,7 +97,6 @@ function initiateBattle() {
   }, 1000);
 }
 
-document.getElementById("battle-start").addEventListener("click", initiateBattle);
       
 //battle event listener
 window.addEventListener("load", function () {
@@ -109,6 +108,14 @@ window.addEventListener("load", function () {
 window.addEventListener("load", function() {
   let char = document.getElementById("char");
   let enemy = document.getElementById("enemy");
+
+
+  document.getElementById("top-left").addEventListener('click', function() {
+    console.log("you clicked me");
+    char.setAttribute("class", "move");
+    setTimeout(() => {
+      document.getElementById("base").setAttribute("class", "hidden");
+      document.getElementById("island").removeAttribute("class");
 
 // player move to second map
   document.getElementById("bottom-arrow").addEventListener('click', function() {
@@ -128,15 +135,14 @@ window.addEventListener("load", function() {
     char.setAttribute("class", "secondMove");
     enemy.removeAttribute("class", "hidden");
     setTimeout(() => {
-      battleStart();
       document.getElementById('sidebar-heading').setAttribute('class', 'hidden');
       document.getElementById("battleStats").removeAttribute("class", "hidden");
     }, 3000);
   });
 });
 
-
 document.getElementById("secondmap-click").addEventListener('click', function() {
+
   let char = document.getElementById("char");
   document.getElementById("secondmap").setAttribute("class", "hidden");
   document.getElementById("thirdmap").removeAttribute("class");
