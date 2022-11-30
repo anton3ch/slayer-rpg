@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 body {
-  background-color: rgb(255, 235, 195);
   background-image: url(./../../assets/img/grass-bg.png);
   background-repeat: repeat;
   font-family: 'VT323', monospace;
@@ -20,7 +19,7 @@ body {
   left: 500px;
   top: 400px;
   width: 76px;
-  height: 103px;
+  height: 120px;
 }
 
 .container {
@@ -34,36 +33,39 @@ body {
   transform: translateX(-50%); */
   place-items: center;
   /* background-color: aliceblue; */
-  max-width: 80%;
+  width: 80%;
   margin: auto;
 }
 
 .maps {
-  grid-column: 2 / 3;
+  box-sizing: border-box;
+  grid-column: 1 / 2;
   grid-row: 1;
-  /* width: 640px;
-  height: 640px; */
+  width: 640px;
+  height: 640px;
 }
 
-/* 
-#nav {
-  grid-column: 4;
-  grid-row: 1;
-  background-color: blue;
-} */
-
 #text {
+  font-family: 'VT323', monospace;
+  box-sizing: border-box;
+  font-size: 20px;
+  color: rgb(93, 56, 11);
   grid-column: 3;
   grid-row: 1;
-  background: rgb(221,209,209);
-  background: radial-gradient(circle, rgba(221,209,209,0.8421743697478992) 0%, rgba(154,154,154,0.7329306722689075) 100%);
+  padding: 25px;
+  background-image: url(./../../assets/img/menu-bg.png);
   display: flex;
   flex-flow: column;
-  min-width: 300px;
+  width: 350px;
   height: 100%;
 }
 
+/* #island {
+  box-sizing: border-box;
+} */
+
 #nav, #story {
+  box-sizing: border-box;
   display: block;
   margin: auto;
   padding: 1rem;
@@ -101,6 +103,13 @@ div {
   color:rgb(238, 224, 164);
 }
 
+.sidebarhead {
+  font-family: Ancient;
+  font-size:35px;
+  color:rgb(41, 31, 9);
+  text-align: center;
+}
+
 .move {
   position: relative;
   animation-name: move;
@@ -133,6 +142,7 @@ div {
     top: 50px;
     left: 550px;
   }
+
   100%   {
     transform: translateY(350px);
   }
@@ -151,3 +161,13 @@ div {
 /* 100% {left: 0px; top: 0px;}  */
 
 /* } */
+
+.btn, .btn-primary {
+  font-family: 'VT323', monospace;
+  font-size: 22px;
+  color: rgb(93, 56, 11);
+  background: rgb(187,150,60);
+  background: linear-gradient(0deg, rgba(187,150,60,1) 0%, rgba(129,225,226,1) 100%);
+  padding: 5px;
+  border: 2px solid rgb(156, 112, 52);
+}

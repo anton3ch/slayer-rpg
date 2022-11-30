@@ -14,7 +14,7 @@ export default class Entity {
 
   randomizer(max, min) {
     const a = Math.floor(Math.random() * (max - min + 1)) + min;
-    return a
+    return a;
   }
 
 

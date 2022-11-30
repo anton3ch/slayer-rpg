@@ -18,51 +18,70 @@ function retrieveObject(keyword){
   return object;
 }
 
+//draws health to battle
+function drawBattle (battle) {
+  document.getElementById("enemy-health").innerText = battle.enemy.healthStat;
+  document.getElementById("player-health").innerText = battle.player.healthStat;
+}
 
-function what() {
-  let player = retrieveObject("player");
-  for (let i = 0; player.healthStat > 0; i++) {
-    
+function fight() {
+  let battle = document.getElementById("fight").myBattle;
+  let player = battle.player;
+  let enemy = battle.enemy;
+  drawBattle(battle);
+  // setTimeout(() => {
+    battle.fight(player, enemy);
+  // }, 1000);
+  if (!battle.inBattle) {
+    //display who won
+    displayWinner(player, enemy);
+    stopFight(player, battle);
+  }
+  // setTimeout(() => {
+    battle.fight(player, enemy);
+  // }, 1000);
+  if (!battle.inBattle) {
+    //display who won
+    displayWinner(player, enemy);
+    stopFight(player, battle);
+  }
+  drawBattle(battle);
+}
+
+function displayWinner(player, enemy) {
+  //check who won and output
+  if (player.healthStat <= 0) {
+    document.getElementById('battle-results').innerText = `${enemy.name} wins!`
+  } else if (enemy.healthStat <= 0) {
+    document.getElementById('battle-results').innerText = `${player.name} wins!`
   }
 }
 
-async function battleStart() {
+function stopFight(player) {
+  document.getElementById("fight").removeEventListener("click", fight);
+  // document.getElementById("heal")removeEventListener("click", heal);
+  // document.getElementById("flee")removeEventListener("click", flee);
+  storeObject("player", player)
+}
+
+function battleStart() {
+  console.log("battle started");
   let player = retrieveObject("player");
   let enemy = new Entity("enemy");
   enemy.enemyStats();
   let battle = new Battle("battle1", player, enemy, "forest");
-  document.getElementById('player-health').innerText = player.healthStat;
-  document.getElementById('enemy-health').innerText = enemy.healthStat;
-  
-  // document.getElementById("fight").addEventListener("click", waitResponse, "fight")
+  battle.firstTurn(player, enemy);
+  document.getElementById("fight").addEventListener("click", fight);
+  document.getElementById("fight").myBattle = battle;
+  drawBattle(battle);
   // document.getElementById("heal").addEventListener("click", waitResponse, "heal");
   // document.getElementById("flee").addEventListener("click", waitResponse, "flee")
-  
-  //battle logic
-  while(battle.inBattle) {
-    let response = window.prompt();
-    switch(response){
-      case 'fight':
-        //fight logic
-        battle.fight(player, enemy)
-        break;
-        case 'heal':
-        //heal logic
-        battle.heal(player);
-        break;
-        case 'flee':
-          //flee logic
-          battle.tacticalRetreat(player, enemy);
-        }
-        battle.inBattle = false;
-      }
-    }
+}
       
-      //battle event listener
-      window.addEventListener("load", function () {
+//battle event listener
+window.addEventListener("load", function () {
   let player = new Entity("john");
   storeObject("player", player);
-  document.getElementById("start-battle").addEventListener("click", battleStart);
 });
 
 //map event listener
@@ -71,25 +90,25 @@ window.addEventListener("load", function() {
   let enemy = document.getElementById("enemy");
 
   document.getElementById("top-left").addEventListener('click', function() {
-  console.log("you clicked me");
-  char.setAttribute("class", "move");
-  setTimeout(() => {
-  document.getElementById("base").setAttribute("class", "hidden");
-  document.getElementById("island").removeAttribute("class");
-  }, 4000);
-
+    console.log("you clicked me");
+    char.setAttribute("class", "move");
+    setTimeout(() => {
+      document.getElementById("base").setAttribute("class", "hidden");
+      document.getElementById("island").removeAttribute("class");
+    }, 4000);
   });
 
   char.addEventListener('animationend', function () {
-  char.removeAttribute("class", "move");
-  char.style.top = "10px";
-  char.setAttribute("class", "secondMove");
-  enemy.removeAttribute("class", "hidden");
-  setTimeout(() => {
-  document.getElementById("battleStats").removeAttribute("class", "hidden");
-  }, 2000);
+    char.removeAttribute("class", "move");
+    char.style.top = "10px";
+    char.setAttribute("class", "secondMove");
+    enemy.removeAttribute("class", "hidden");
+    setTimeout(() => {
+      battleStart();
+      document.getElementById('sidebar-heading').setAttribute('class', 'hidden');
+      document.getElementById("battleStats").removeAttribute("class", "hidden");
+    }, 3000);
   });
-
 });
 
 document.getElementById("island-click").addEventListener('click', function() {
@@ -99,6 +118,8 @@ document.getElementById("island-click").addEventListener('click', function() {
   char.addEventListener('animationend', function () {
     console.log("second animation ended");
     setTimeout(() => {
+      battleStart();
+      document.getElementById('sidebar-heading').setAttribute('class', 'hidden');
       console.log("battle start");
       document.getElementById("battleStats").removeAttribute("class", "hidden");
     }, 2000);
