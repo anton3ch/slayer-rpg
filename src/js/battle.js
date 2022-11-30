@@ -1,8 +1,3 @@
-import Entity from './entities.js';
-
-const player = new Entity();
-const enemy = new Entity();
-
 export default class Battle {
   constructor(name, player, enemy, setting) {
     this.battleName = name;
@@ -32,7 +27,16 @@ export default class Battle {
 
   fight(player, enemy) {
     this.checkTurn(player, enemy);
-    this.combatEnd(player, enemy)
+    this.combatEnd(player, enemy);
+  }
+
+  attack(attacker, defender) {
+    let damage = attacker.damageStat - defender.armorStat;
+    if (damage < 1 ) {
+      damage = 1;
+    }
+    defender.healthStat -= damage;
+    console.log(damage);
   }
 
   tacticalRetreat(player, enemy) {
@@ -42,6 +46,7 @@ export default class Battle {
         throw new Error(error);
       } else {
         this.inBattle = false;
+        return 'you have successfully escaped'
       }
     }
     catch(error) {
@@ -49,13 +54,17 @@ export default class Battle {
     }
   }
   
+  // updateDOM(player, enemy) {
+  //   document.getElementById("enemy-health").innerText = enemy.healthStat;
+  //   document.getElementById("player-health").innerText = player.healthStat;
+  // }
+
+
   combatEnd(player, enemy) {
-    if (player.healthStat < 0) {
+    if (player.healthStat <= 0) {
       this.inBattle = false;
-      return 'enemy wins';
-    } else if (enemy.healthStat < 0) {
+    } else if (enemy.healthStat <= 0) {
       this.inBattle = false;
-      return 'player wins';
     }
   }
 
@@ -66,12 +75,12 @@ export default class Battle {
     return false;
   } 
   
-  checkTurn() {
+  checkTurn(player, enemy) {
     if (this.turn % 2 === 0) { 
-      player.attack(enemy);
+      this.attack(player, enemy)
       this.turn++;
     } else {
-      enemy.attack(player);
+      this.attack(enemy, player)
       this.turn++;
     }
   }
