@@ -25,11 +25,11 @@ export default class Entity {
     this.speedStat = this.randomizer(10, 1);
   }
 
-  attack(entity) {
-    let damage = this.damageStat - entity.armorStat;
-    if (damage < 1 ) {
-      damage = 1;
-    }
-    entity.healthStat -= damage;
-  }
+  // attack(entity) {
+  //   let damage = this.damageStat - entity.armorStat;
+  //   if (damage < 1 ) {
+  //     damage = 1;
+  //   }
+  //   entity.healthStat -= damage;
+  // }
 }

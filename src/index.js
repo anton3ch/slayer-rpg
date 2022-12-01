@@ -24,42 +24,61 @@ function drawBattle (battle) {
   document.getElementById("player-health").innerText = battle.player.healthStat;
 }
 
-
 function waitForMe(ms) {
   return new Promise(resolve => {
-    setTimeout(() => { resolve("") }, ms)
+    setTimeout(() => { resolve(""); }, ms);
   });
+}
+function disableFightBtn() {
+  document.getElementById('fight').setAttribute('disabled', 'true');
+  document.getElementById('fight').style.filter = 'grayscale(1)';
+  document.getElementById('fight').style.cursor = 'not-allowed';
+}
+function enableFightBtn() {
+  document.getElementById('fight').style.filter = 'grayscale(0)';
+  document.getElementById('fight').removeAttribute('disabled', 'true');
+  document.getElementById('fight').style.cursor = 'pointer';
 }
 async function fight() {
   let battle = document.getElementById("fight").myBattle;
   let player = battle.player;
   let enemy = battle.enemy;
-  drawBattle(battle);
-  document.getElementById('fight').setAttribute('disabled', 'true');
-  battle.fight(player, enemy);
-  await waitForMe(1000);
-  document.getElementById('fight').removeAttribute('disabled', 'true');
-  if (!battle.inBattle) {
-    displayWinner(player, enemy);
-    stopFight(player, battle);
-  }
-  
-  setTimeout(() => {
+  // drawBattle(battle);
+  disableFightBtn();
+  for (let i = 0; i < 2; i++) {
+    drawBattle(battle);
     battle.fight(player, enemy);
-  }, 1000);
-  if (!battle.inBattle) {
-    displayWinner(player, enemy);
-    stopFight(player, battle);
+    await waitForMe(1000);
+    if (!battle.inBattle) {
+      displayWinner(player, enemy);
+      stopFight(player, battle);
+    }
+    drawBattle(battle);
   }
-  drawBattle(battle);
+  enableFightBtn();
+  // battle.fight(player, enemy);
+  // await waitForMe(1000);
+  // if (!battle.inBattle) {
+  //   displayWinner(player, enemy);
+  //   stopFight(player, battle);
+  // }
+  // battle.fight(player, enemy);
+  // await waitForMe(1000);
+  // if (!battle.inBattle) {
+  //   displayWinner(player, enemy);
+  //   stopFight(player, battle);
+  // }
+  // drawBattle(battle);
 }
 
 function displayWinner(player, enemy) {
   //check who won and output
   if (player.healthStat <= 0) {
-    document.getElementById('battle-results').innerText = `${enemy.name} wins!`
+    document.getElementById('battle-results').innerText = `Monster ${enemy.name} wins!`;
+    document.getElementById('battle-results').removeAttribute('class');
   } else if (enemy.healthStat <= 0) {
-    document.getElementById('battle-results').innerText = `${player.name} wins!`
+    document.getElementById('battle-results').innerText = `Player ${player.name} wins!`;
+    document.getElementById('battle-results').removeAttribute('class');
   }
 }
 
@@ -67,15 +86,26 @@ function stopFight(player) {
   document.getElementById("fight").removeEventListener("click", fight);
   // document.getElementById("heal")removeEventListener("click", heal);
   // document.getElementById("flee")removeEventListener("click", flee);
-  storeObject("player", player)
+  storeObject("player", player);
+}
+export function logFirstTurn(entity) {
+  document.getElementById('battle-log').removeAttribute('class');
+  const div = document.createElement('div');
+  div.append(`${entity.name} goes first.`)
+  document.getElementById('battle-log').append(div);
+}
+export function logDamage(attacker, defender, damage) {
+  const div = document.createElement('div');
+  div.append(`${attacker.name} deals ${damage} damage to ${defender.name}.`);
+  document.getElementById('battle-log').append(div);
 }
 
-function battleStart() {
-  console.log("battle started");
+async function battleStart() {
   let player = retrieveObject("player");
   let enemy = new Entity("enemy");
   enemy.enemyStats();
   let battle = new Battle("battle1", player, enemy, "forest");
+  await waitForMe(1000);
   battle.firstTurn(player, enemy);
   document.getElementById("fight").addEventListener("click", fight);
   document.getElementById("fight").myBattle = battle;
@@ -101,6 +131,7 @@ function initiateBattle() {
     char.style.top ="-80px";
     enemy.style.top ="225px";
   }, 1000);
+  battleStart();
 }
 
 //battle event listener
@@ -111,13 +142,10 @@ window.addEventListener("load", function () {
 
 //map event listener
 window.addEventListener("load", function() {
-
   document.getElementById("battle-start").addEventListener("click", initiateBattle);
-  
   let char = document.getElementById("char");
   let enemy = document.getElementById("enemy");
-
-// player move to second map
+  // player move to second map
   document.getElementById("bottom-arrow").addEventListener('click', function() {
     char.setAttribute("class", "move");
     setTimeout(() => {
@@ -125,10 +153,8 @@ window.addEventListener("load", function() {
       document.getElementById("secondmap").removeAttribute("class");
       $("#bottom-arrow").hide();
       $("#battleStats").show();
-
     }, 4000);
   });
-
   char.addEventListener('animationend', function () {
     char.removeAttribute("class", "move");
     char.style.top = "10px";
@@ -140,17 +166,11 @@ window.addEventListener("load", function() {
     }, 3000);
   });
 });
-
 document.getElementById("bottom-arrow").addEventListener('click', function() {
   let char = document.getElementById("char");
-  document.getElementById("island").setAttribute("class", "hidden");
-  document.getElementById("thirdmap").removeAttribute("class");
   char.addEventListener('animationend', function () {
-    console.log("second animation ended");
     setTimeout(() => {
-      battleStart();
       document.getElementById('sidebar-heading').setAttribute('class', 'hidden');
-      console.log("battle start");
       document.getElementById("battleStats").removeAttribute("class", "hidden");
     }, 2000);
   });
