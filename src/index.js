@@ -145,7 +145,17 @@ window.addEventListener("load", function() {
   document.getElementById("battle-start").addEventListener("click", initiateBattle);
   let char = document.getElementById("char");
   let enemy = document.getElementById("enemy");
-  // player move to second map
+  // get name of player and begin game
+  document.getElementById("name-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    $("#intro-message").fadeIn(2000);
+    $("#sidebar-heading").slideUp(1000);
+    document.getElementById("bottom-arrow").style.opacity = "0.7";
+    let nameInput = document.getElementById("name-input").value;
+    nameInput = nameInput.toUpperCase();
+    document.getElementById("name-goes-here").innerText = nameInput;
+  });
+// player move to second map
   document.getElementById("bottom-arrow").addEventListener('click', function() {
     char.setAttribute("class", "move");
     setTimeout(() => {
@@ -161,17 +171,22 @@ window.addEventListener("load", function() {
     char.setAttribute("class", "secondMove");
     enemy.removeAttribute("class", "hidden");
     setTimeout(() => {
-      document.getElementById('sidebar-heading').setAttribute('class', 'hidden');
-      document.getElementById("battleStats").removeAttribute("class", "hidden");
-    }, 3000);
+      document.getElementById('sidebar-heading').setAttribute('class', 'hidden text-center');
+      document.getElementById("battleStats").setAttribute("class", "text-center");
+      $("#intro-message").slideUp();
+      $("#secondmap-message").show();
+      //$("#secondmap-message").fadeIn(2000);
+    }, 4000);
   });
 });
+
 document.getElementById("bottom-arrow").addEventListener('click', function() {
   let char = document.getElementById("char");
   char.addEventListener('animationend', function () {
     setTimeout(() => {
       document.getElementById('sidebar-heading').setAttribute('class', 'hidden');
       document.getElementById("battleStats").removeAttribute("class", "hidden");
+      document.getElementById('sidebar-heading').setAttribute('class', 'hidden text-center');
     }, 2000);
   });
 });
