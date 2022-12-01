@@ -2,12 +2,12 @@
 
 #### An epic quest to slay (programming) bugs
 
-#### By Alex Johnson
-#### Brian Noh
+#### By Anton Ch
 #### Aitana Shough
-#### Anton Chumachenko
+#### Alex Johnson
+#### Brian Noh
 #### Daniel Yakovlev
-#### Vera Weikel
+
 
 ## Technologies Used
 
