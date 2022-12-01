@@ -1,3 +1,5 @@
+import { logFirstTurn, logDamage } from './../index.js';
+
 export default class Battle {
   constructor(name, player, enemy, setting) {
     this.battleName = name;
@@ -11,9 +13,11 @@ export default class Battle {
   firstTurn(player, enemy) {
     if (this.playerIsFast(player, enemy)) {
       this.turn = 0;
+      logFirstTurn(player);
       return;
     }
     this.turn = 1;
+    logFirstTurn(enemy);
   }
 
   heal(entity) {
@@ -36,7 +40,7 @@ export default class Battle {
       damage = 1;
     }
     defender.healthStat -= damage;
-    console.log(damage);
+    logDamage(attacker, defender, damage);
   }
 
   tacticalRetreat(player, enemy) {
@@ -46,19 +50,13 @@ export default class Battle {
         throw new Error(error);
       } else {
         this.inBattle = false;
-        return 'you have successfully escaped'
+        return 'you have successfully escaped';
       }
     }
     catch(error) {
       return error;
     }
   }
-  
-  // updateDOM(player, enemy) {
-  //   document.getElementById("enemy-health").innerText = enemy.healthStat;
-  //   document.getElementById("player-health").innerText = player.healthStat;
-  // }
-
 
   combatEnd(player, enemy) {
     if (player.healthStat <= 0) {
@@ -77,10 +75,10 @@ export default class Battle {
   
   checkTurn(player, enemy) {
     if (this.turn % 2 === 0) { 
-      this.attack(player, enemy)
+      this.attack(player, enemy);
       this.turn++;
     } else {
-      this.attack(enemy, player)
+      this.attack(enemy, player);
       this.turn++;
     }
   }
