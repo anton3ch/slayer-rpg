@@ -13,11 +13,15 @@ export default class Battle {
   firstTurn(player, enemy) {
     if (this.playerIsFast(player, enemy)) {
       this.turn = 0;
-      logFirstTurn(player);
+      setTimeout(() => {
+        logFirstTurn(player);
+      }, 1000);
       return;
     }
     this.turn = 1;
-    logFirstTurn(enemy);
+    setTimeout(() => {
+      logFirstTurn(enemy);
+    }, 1000);
   }
 
   heal(entity) {

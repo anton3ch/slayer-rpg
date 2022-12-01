@@ -1,8 +1,6 @@
 import './css/styles.css';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import Character from './js/character.js';
-// import $ from 'jquery'; // $ npm i jquery
 import Entity from './js/entities.js';
 import Battle from './js/battle.js';
 
@@ -43,32 +41,18 @@ async function fight() {
   let battle = document.getElementById("fight").myBattle;
   let player = battle.player;
   let enemy = battle.enemy;
-  // drawBattle(battle);
   disableFightBtn();
+  drawBattle(battle);
   for (let i = 0; i < 2; i++) {
-    drawBattle(battle);
     battle.fight(player, enemy);
+    drawBattle(battle);
     await waitForMe(500);
     if (!battle.inBattle) {
       displayWinner(player, enemy);
       stopFight(player, battle);
     }
-    drawBattle(battle);
   }
   enableFightBtn();
-  // battle.fight(player, enemy);
-  // await waitForMe(1000);
-  // if (!battle.inBattle) {
-  //   displayWinner(player, enemy);
-  //   stopFight(player, battle);
-  // }
-  // battle.fight(player, enemy);
-  // await waitForMe(1000);
-  // if (!battle.inBattle) {
-  //   displayWinner(player, enemy);
-  //   stopFight(player, battle);
-  // }
-  // drawBattle(battle);
 }
 
 function displayWinner(player, enemy) {
@@ -79,19 +63,24 @@ function displayWinner(player, enemy) {
   } else if (enemy.healthStat <= 0) {
     document.getElementById('battle-results').innerText = `Player ${player.name} wins!`;
     document.getElementById('battle-results').removeAttribute('class');
+    enemyDeath();
   }
 }
-
 function stopFight(player) {
   document.getElementById("fight").removeEventListener("click", fight);
-  // document.getElementById("heal")removeEventListener("click", heal);
-  // document.getElementById("flee")removeEventListener("click", flee);
   storeObject("player", player);
+  showReturnBtn();
 }
+function enemyDeath() {
+  $('#enemy').attr('width', "121px");
+  $('#enemy').attr('height', "131px");
+  $('#enemy').attr('src', "https://cdn.discordapp.com/attachments/820918363001454592/1047936942798553168/enemy-death.gif");
+}
+
 export function logFirstTurn(entity) {
   document.getElementById('battle-log').removeAttribute('class');
   const div = document.createElement('div');
-  div.append(`${entity.name} goes first.`)
+  div.append(`${entity.name} goes first.`);
   document.getElementById('battle-log').append(div);
 }
 export function logDamage(attacker, defender, damage) {
@@ -110,12 +99,12 @@ async function battleStart() {
   document.getElementById("fight").addEventListener("click", fight);
   document.getElementById("fight").myBattle = battle;
   drawBattle(battle);
-  // document.getElementById("heal").addEventListener("click", waitResponse, "heal");
-  // document.getElementById("flee").addEventListener("click", waitResponse, "flee")
 }
 
 function initiateBattle() {
   document.getElementById("secondmap").setAttribute("class", "shake");
+  $("#secondmap-arrival").hide();
+  $("#battle-startmessage").show();
   setTimeout(function(){
     let char = document.getElementById("char");
     let enemy = document.getElementById("enemy");
@@ -130,8 +119,32 @@ function initiateBattle() {
     enemy.style.left ="450px";
     char.style.top ="-80px";
     enemy.style.top ="225px";
+    $("#battle-startmessage").hide();    
   }, 1000);
   battleStart();
+}
+function showReturnBtn() {
+  $('#controls').hide();
+  $('#return').show();
+  $('#return-btn').click(returnFromBattle);
+}
+
+function returnFromBattle() {
+  $('#battle').hide();
+  $('#return').hide();
+  $('#stats').hide();
+  $('#enemy').hide();
+  $('#secondmap').show();
+  $("#secondmap-return").show();
+  setTimeout(() => {
+    $("#right-arrow").show();
+  }, 1000);
+  $('#battle-log').html(null);
+  $('#battle-results').html(null);
+  $("#right-arrow").click(function() {
+    $("secondmap").hide;
+    $("thirdmap").show;
+  });
 }
 
 //map event listener
@@ -151,13 +164,15 @@ window.addEventListener("load", function() {
     let player = new Entity(nameInput);
     storeObject("player", player);
   });
-// player move to second map
+  // player move to second map
   document.getElementById("bottom-arrow").addEventListener('click', function() {
     char.setAttribute("class", "move");
     setTimeout(() => {
       document.getElementById("base").setAttribute("class", "hidden");
       document.getElementById("secondmap").removeAttribute("class");
       $("#bottom-arrow").hide();
+      $("#intro-message").hide();
+      $("#secondmap-arrival").show();
     }, 4000);
   });
   char.addEventListener('animationend', function () {
@@ -165,14 +180,12 @@ window.addEventListener("load", function() {
     char.style.top = "10px";
     char.setAttribute("class", "secondMove");
     enemy.removeAttribute("class", "hidden");
+   
     setTimeout(() => {
       document.getElementById('sidebar-heading').setAttribute('class', 'hidden text-center');
       document.getElementById("battleStats").setAttribute("class", "text-center");
-      const secondMessage = document.getElementById("battleStats")
-      $("#intro-message").slideUp();
-      $("#secondmap-message").show();
-      $("#battleStats").show();
-      // $("#secondmap-message").fadeIn(2000);
+      $("#battleStats").fadeIn(5000);
+      document.getElementById("secondmap").removeAttribute("class");
     }, 4000);
   });
 });

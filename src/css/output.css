@@ -36,6 +36,18 @@ body {
   z-index: 1;
 }
 
+#right-arrow {
+  position: relative;
+  left: 625px;
+  top: 500px;
+  width: 56px;
+  height: 60px;
+  animation: point 3s ease-in-out infinite;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 1;
+}
+
 .container {
   /* position: absolute; */
   display: grid;

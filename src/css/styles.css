@@ -36,6 +36,29 @@ body {
   z-index: 1;
 }
 
+#right-arrow {
+  position: relative;
+  left: 600px;
+  top: 450px;
+  width: 56px;
+  height: 60px;
+  animation: point-right 3s ease-in-out infinite;
+  cursor: pointer;
+  opacity: .7;
+  z-index: 1;
+}
+
+#codex {
+  position: relative;
+  left: 500px;
+  top: 300px;
+  width: 32px;
+  height: 32px;
+  animation: point 3s ease-in-out infinite;
+  cursor: pointer;
+  z-index: 1;
+}
+
 .container {
   /* position: absolute; */
   display: grid;
@@ -165,13 +188,13 @@ div {
 .secondMove {
   position: relative;
   animation-name: secondMove;
-  animation-duration: 4s;
+  animation-duration: 3s;
   animation-fill-mode: forwards;
 
 }
 
 .shake {
-  animation: shake 1s ease-in-out 3;
+  animation: shake 2.5s ease-in-out 3;
 }
 
 /* .move-back {
@@ -206,6 +229,21 @@ div {
 	100% {
 
 		transform: translatey(0px);
+	}
+}
+
+@keyframes point-right {
+	0% {
+
+		transform: translatex(0px);
+	}
+	50% {
+
+		transform: translatex(-20px);
+	}
+	100% {
+
+		transform: translatex(0px);
 	}
 }
 
