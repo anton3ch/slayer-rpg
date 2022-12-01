@@ -14,7 +14,7 @@
         <img src="./../assets/img/character.gif" alt="char" id="char">
         <img src="./../assets/img/monster.gif" alt="enemy" id="enemy" class="hidden">
         <img src="./../assets/img/bottom.png" alt="bottom" id="bottom-arrow">
-        <img id="base" src="./../assets/img/starting-bg.png" alt="basemap" usemap="#basemap" height="640" width="640">
+        <img id="base" src="./../assets/img/starting-bg.png" alt="basemap" height="640" width="640">
 
         <img id="secondmap" class="hidden" src="./../assets/img/second-bg.png" alt="secondmap" usemap="#secondmap" height="640" width="640">
         <map name="secondmap">
@@ -46,11 +46,26 @@
       </div>
 
     <div id="text">
-      <div id="sidebar-heading" class="">
-        <span class="sidebarhead">Welcome</span>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ornare orci id facilisis. Nulla vitae blandit eros.</p>
+      <div id="sidebar-heading" class="text-center">
+        <h2 class="sidebarhead">Hello, adventurer</h2>
+        <p>What shall we call you?</p>
+        <form id="name-form">
+          <input type="text" id="name-input">
+          <button type="submit">enter</button>
+        </form>
       </div>
-      <div id="battleStats" class="hidden">
+      <div>
+        <span class="hidden" id="intro-message">
+        <h2 class="sidebarhead">Welcome to the Ancient Woods</h2>
+        <p>You are <span id="name-goes-here"></span>.</p>
+        <p>You are searching for the mythical PROGRAMMING CODEX. You must journey through the ANCIENT WOODS to find it.</p>
+        <p>Start your journey by clicking on the ARROW down the STONE PATH just ahead.</p>
+
+        <span class="hidden" id="secondmap-message"><p>You approach a clearing where a DARK WIZARD blocks your path.</p>
+          <p>The earth starts shaking beneath you...</p></span>
+      </div>
+
+      <div id="battleStats" class="hidden text-center">
         <button class="btn btn-primary" id="battle-start">battle start!</button> 
       </div>  
     </div>
