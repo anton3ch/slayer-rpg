@@ -48,7 +48,7 @@ async function fight() {
   for (let i = 0; i < 2; i++) {
     drawBattle(battle);
     battle.fight(player, enemy);
-    await waitForMe(1000);
+    await waitForMe(500);
     if (!battle.inBattle) {
       displayWinner(player, enemy);
       stopFight(player, battle);
@@ -102,7 +102,7 @@ export function logDamage(attacker, defender, damage) {
 
 async function battleStart() {
   let player = retrieveObject("player");
-  let enemy = new Entity("enemy");
+  let enemy = new Entity("WIZARD");
   enemy.enemyStats();
   let battle = new Battle("battle1", player, enemy, "forest");
   await waitForMe(1000);
@@ -134,12 +134,6 @@ function initiateBattle() {
   battleStart();
 }
 
-//battle event listener
-window.addEventListener("load", function () {
-  let player = new Entity("john");
-  storeObject("player", player);
-});
-
 //map event listener
 window.addEventListener("load", function() {
   document.getElementById("battle-start").addEventListener("click", initiateBattle);
@@ -154,6 +148,8 @@ window.addEventListener("load", function() {
     let nameInput = document.getElementById("name-input").value;
     nameInput = nameInput.toUpperCase();
     document.getElementById("name-goes-here").innerText = nameInput;
+    let player = new Entity(nameInput);
+    storeObject("player", player);
   });
 // player move to second map
   document.getElementById("bottom-arrow").addEventListener('click', function() {
@@ -162,7 +158,6 @@ window.addEventListener("load", function() {
       document.getElementById("base").setAttribute("class", "hidden");
       document.getElementById("secondmap").removeAttribute("class");
       $("#bottom-arrow").hide();
-      $("#battleStats").show();
     }, 4000);
   });
   char.addEventListener('animationend', function () {
@@ -173,8 +168,10 @@ window.addEventListener("load", function() {
     setTimeout(() => {
       document.getElementById('sidebar-heading').setAttribute('class', 'hidden text-center');
       document.getElementById("battleStats").setAttribute("class", "text-center");
+      const secondMessage = document.getElementById("battleStats")
       $("#intro-message").slideUp();
       $("#secondmap-message").show();
+      $("#battleStats").show();
       // $("#secondmap-message").fadeIn(2000);
     }, 4000);
   });
