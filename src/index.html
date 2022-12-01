@@ -1,50 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Team Week RPG</title>
+  <title>~ The Bug Slayer ~</title>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> -->
 </head>
 <body>
-
   <h1 class="header text-center">~ The Bug Slayer ~</h1>
-
   <div class="container">
-      <div class="maps">
-        <img src="./../assets/img/character.gif" alt="char" id="char">
-        <img src="./../assets/img/monster.gif" alt="enemy" id="enemy" class="hidden">
-        <img src="./../assets/img/bottom.png" alt="bottom" id="bottom-arrow">
-        <img src="./../assets/img/right-arrow.png" alt="right" id="right-arrow" class="hidden">
-        <img id="base" src="./../assets/img/starting-bg.png" alt="basemap" height="640" width="640">
+    <div class="maps">
+      <img src="./../assets/img/character.gif" alt="char" id="char">
+      <img src="./../assets/img/monster.gif" alt="enemy" id="enemy" class="hidden">
+      <img src="./../assets/img/bottom.png" alt="bottom" id="bottom-arrow">
+      <img src="./../assets/img/right-arrow.png" alt="right" id="right-arrow" class="hidden">
+      <img src="./../assets/img/red-codex.gif" alt="right" id="codex" class="hidden">
 
-        <img id="secondmap" class="hidden" src="./../assets/img/second-bg.png" alt="secondmap" usemap="#secondmap" height="640" width="640">
-        <map name="secondmap">
-          <area id="secondmap-click" alt="secondmap" coords="394,328,640,629" shape="rect">
-        </map>
- 
-        <img id="thirdmap" class="hidden" src="./../assets/img/third-bg.png" alt="third-bg" usemap="#thirdmap" height="640" width="640">
-        <map name="thirdmap">
-          <area id="thirdmap" alt="thirdmap" coords="317,638,228,449" shape="rect">
-        </map>
-        
-        <img id="battle" class="hidden" src="./../assets/img/battle.png" alt="battle" usemap="#battle" >
-        <map name="battle">
-          <area id="battle" alt="battle" coords="317,638,228,449" shape="rect">
-        </map>
+      <img id="base" src="./../assets/img/starting-bg.png" alt="basemap" height="640" width="640">
+      <img id="secondmap" class="hidden" src="./../assets/img/second-bg.png" alt="secondmap" usemap="#secondmap" height="640" width="640">
+      <map name="secondmap">
+        <area id="secondmap-click" alt="secondmap" coords="394,328,640,629" shape="rect">
+      </map>
+      <img id="thirdmap" class="hidden" src="./../assets/img/third-bg.png" alt="third-bg" usemap="#thirdmap" height="640" width="640">
+      <map name="thirdmap">
+        <area id="thirdmap" alt="thirdmap" coords="317,638,228,449" shape="rect">
+      </map>
+      <img id="battle" class="hidden" src="./../assets/img/battle.png" alt="battle" usemap="#battle" >
+      <map name="battle">
+        <area id="battle" alt="battle" coords="317,638,228,449" shape="rect">
+      </map>
+    </div>
+    <div id="controls" class="hidden">
+      <button type="button" id="fight" class="button-75">Fight</button>
+      <!-- <button type="button" id="heal" class="button-75">Heal</button> -->
+      <button type="button" id="flee" class="button-75">Flee</button>
+    </div>
+    <div id="stats" class="hidden">
+      <div class="d-flex flex-column">
+        <div>
+          <p>Player health:</p>
+          <p id="player-health"></p><br>
+          <progress id="player-progress">/progress>
+        </div>
+        <div>
+          <p>Enemy health:</p>
+          <p id="enemy-health"></p>
+          <progress id="enemy-progress"></progress>
+        </div>
       </div>
-
-      <div id="controls" class="hidden">
-        <button type="button" id="fight" class="button-75">Fight</button>
-        <!-- <button type="button" id="heal" class="button-75">Heal</button> -->
-        <button type="button" id="flee" class="button-75">Flee</button>
-      </div>
-
-      <div id="stats" class="hidden">
-        <p>Player health:</p>
-        <p id="player-health"></p>
-        <p>Enemy health:</p>
-        <p id="enemy-health"></p>
-      </div>
+    </div>
 
     <div id="text">
       <div id="sidebar-heading" class="text-center">
@@ -61,18 +64,11 @@
         You are <span id="name-goes-here"></span>.
         You are searching for the mythical PROGRAMMING CODEX. You must journey through the ANCIENT WOODS to find it.
         Start your journey by clicking on the ARROW down the STONE PATH just ahead.</span>
-
         <span id="secondmap-arrival" class="hidden">You approach a clearing where a DARK WIZARD blocks your path. You must fight him to continue!</span>
-    
         <span id="battle-startmessage" class="hidden">The earth starts shaking beneath you...</span>
-
-        <span id="secondmap-return" class="hidden">You have successfully DEFEATED the DARK WIZARD.
-          You feel your spirit return to the ANCIENT WOODS. Your journey continues...</span>
-
-        <span id="thirdmap-message" class="hidden">You've made it! The shining beacon of the PROGRAMMING CODEX draws you to it immediately.
-          <span id="name-goes-here"></span>'s PROGRAMMING skill has increased by 100.
-          <span id="name-goes-here"></span> has won the game!</span>
-
+        <span id="secondmap-return" class="hidden">You have successfully DEFEATED the DARK WIZARD. You feel your spirit return to the ANCIENT WOODS. Your journey continues...</span>
+        <span id="thirdmap-message" class="hidden">You've made it! The shining beacon of the PROGRAMMING CODEX draws you to it immediately.</span>
+        <p id="win-message" class="hidden">The CODEX emits a bright light. Your PROGRAMMING skill has increased by 100. You have won the game!</p>
       </div>
       <span id="battle-log" class="hidden"></span>
       <span id="battle-results" class="hidden"></span>
@@ -84,6 +80,5 @@
       </div>  
     </div>
   </div>
-
 </body>
 </html>

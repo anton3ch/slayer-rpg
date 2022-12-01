@@ -1,4 +1,4 @@
-import { logFirstTurn, logDamage } from './../index.js';
+import { logFirstTurn, logDamage, playerAttackAnimation, enemyAttackAnimation } from './../index.js';
 
 export default class Battle {
   constructor(name, player, enemy, setting) {
@@ -80,10 +80,17 @@ export default class Battle {
   checkTurn(player, enemy) {
     if (this.turn % 2 === 0) { 
       this.attack(player, enemy);
+      playerAttackAnimation();
+      // setTimeout(function(){
+      //   enemyAttackAnimation();
+      // }, 500)
       this.turn++;
+      console.log("char attack")
     } else {
       this.attack(enemy, player);
+      enemyAttackAnimation();
       this.turn++;
+      console.log("enemy attack")
     }
   }
 }

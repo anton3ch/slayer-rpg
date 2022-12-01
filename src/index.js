@@ -18,8 +18,8 @@ function retrieveObject(keyword){
 
 //draws health to battle
 function drawBattle (battle) {
-  document.getElementById("enemy-health").innerText = battle.enemy.healthStat;
-  document.getElementById("player-health").innerText = battle.player.healthStat;
+  $("#enemy-progress").attr("value", battle.enemy.healthStat);
+  $("#player-progress").attr("value", battle.player.healthStat);
 }
 
 function waitForMe(ms) {
@@ -36,6 +36,18 @@ function enableFightBtn() {
   document.getElementById('fight').style.filter = 'grayscale(0)';
   document.getElementById('fight').removeAttribute('disabled', 'true');
   document.getElementById('fight').style.cursor = 'pointer';
+}
+export function playerAttackAnimation() {
+  $('#char').attr('class', 'char');
+  setTimeout(function(){
+    $('#char').attr('class', 'char-attack');
+  }, 1)
+}
+export function enemyAttackAnimation() {
+  $('#enemy').attr('class', 'char');
+  setTimeout(function(){
+    $('#enemy').attr('class', 'enemy-attack');
+  }, 1)
 }
 async function fight() {
   let battle = document.getElementById("fight").myBattle;
@@ -80,7 +92,7 @@ function enemyDeath() {
 export function logFirstTurn(entity) {
   document.getElementById('battle-log').removeAttribute('class');
   const div = document.createElement('div');
-  div.append(`${entity.name} goes first.`);
+  div.append(`Speed is the name of the game.\n ${entity.name} goes first.`);
   document.getElementById('battle-log').append(div);
 }
 export function logDamage(attacker, defender, damage) {
@@ -98,6 +110,9 @@ async function battleStart() {
   battle.firstTurn(player, enemy);
   document.getElementById("fight").addEventListener("click", fight);
   document.getElementById("fight").myBattle = battle;
+
+  $("#enemy-progress").attr("max", enemy.healthStat);
+  $("#player-progress").attr("max", player.healthStat);
   drawBattle(battle);
 }
 
@@ -105,6 +120,7 @@ function initiateBattle() {
   document.getElementById("secondmap").setAttribute("class", "shake");
   $("#secondmap-arrival").hide();
   $("#battle-startmessage").show();
+  $("#battle-start").hide();
   setTimeout(function(){
     let char = document.getElementById("char");
     let enemy = document.getElementById("enemy");
@@ -114,7 +130,6 @@ function initiateBattle() {
     $("#battle").show();
     $("#controls").show();
     $("#stats").show();
-    $("#battle-start").hide();
     char.style.left ="390px";
     enemy.style.left ="450px";
     char.style.top ="-80px";
@@ -130,21 +145,46 @@ function showReturnBtn() {
 }
 
 function returnFromBattle() {
+  $('#secondmap').attr('class', 'char');
   $('#battle').hide();
   $('#return').hide();
   $('#stats').hide();
   $('#enemy').hide();
   $('#secondmap').show();
   $("#secondmap-return").show();
-  setTimeout(() => {
-    $("#right-arrow").show();
-  }, 1000);
+  $('#char').attr('class', 'char');
+  document.getElementById("char").style.top ="420px";
+  document.getElementById("char").style.left ="450px";
+  $("#right-arrow").show();
   $('#battle-log').html(null);
   $('#battle-results').html(null);
-  $("#right-arrow").click(function() {
-    $("secondmap").hide;
-    $("thirdmap").show;
-  });
+  $("#right-arrow").click(goToThirdMap);
+}
+
+function goToThirdMap() {
+  let char = document.getElementById("char");
+  char.setAttribute("class", "thirdMove");
+  setTimeout(() => {
+    $("#secondmap").hide();
+    $("#secondmap-return").hide();
+    $("#thirdmap").show();
+    $("thirdmap-message").show();
+    $("#codex").show();
+    $("#right-arrow").hide();
+    document.getElementById("char").style.top ="370px";
+    document.getElementById("char").style.left ="-70px";
+  }, 3000);
+  $("#codex").click(winGame);
+}
+
+function winGame() {
+  let char = document.getElementById("char");
+  char.setAttribute("class", "fourthMove");
+  $("thirdmap-message").hide();
+  setTimeout(() => {
+    document.getElementById("win-message").style.display = "block";
+    // $("win-message").fadeIn();
+  }, 2000);
 }
 
 //map event listener
@@ -173,9 +213,7 @@ window.addEventListener("load", function() {
       $("#bottom-arrow").hide();
       $("#intro-message").hide();
       $("#secondmap-arrival").show();
-    }, 4000);
-  });
-  char.addEventListener('animationend', function () {
+
     char.removeAttribute("class", "move");
     char.style.top = "10px";
     char.setAttribute("class", "secondMove");
@@ -187,8 +225,11 @@ window.addEventListener("load", function() {
       $("#battleStats").fadeIn(5000);
       document.getElementById("secondmap").removeAttribute("class");
     }, 4000);
+  }, 4000);
   });
-});
+  // char.addEventListener('animationend', function () {
+    
+// });
 
 document.getElementById("bottom-arrow").addEventListener('click', function() {
   let char = document.getElementById("char");
@@ -200,3 +241,4 @@ document.getElementById("bottom-arrow").addEventListener('click', function() {
     }, 2000);
   });
 });
+})

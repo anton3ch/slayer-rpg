@@ -17,7 +17,7 @@
 * Node.js
 * bootstrap
 * Webpack
-* (https://www.mapeditor.org/)[Tiled] Map Editor
+* [Tiled](https://www.mapeditor.org/) Map Editor
 
 
 ## Description
@@ -42,9 +42,9 @@
 
 ## Additional Thanks
 
-* Anicent Ruins overworld sprite pack from (https://rafaelmatos.itch.io/epic-rpg-world-pack-free-demo-ancient-ruins)[Rafael Matos]
-* Book/codex sprite from (https://raventale.itch.io/daily-doodles-pixelart-asset-pack)[Liz Molnar]
-* Dark Wizard enemy sprite from (https://luizmelo.itch.io/evil-wizard-2)[Luiz Melos]
+* Anicent Ruins overworld sprite pack from [Rafael Matos](https://rafaelmatos.itch.io/epic-rpg-world-pack-free-demo-ancient-ruins)
+* Book/codex sprite from [Liz Molnar](https://raventale.itch.io/daily-doodles-pixelart-asset-pack)
+* Dark Wizard enemy sprite from [Luiz Melos](https://luizmelo.itch.io/evil-wizard-2)
 
 ## Future implementations
 
