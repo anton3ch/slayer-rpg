@@ -6,6 +6,8 @@ body {
   font-family: 'VT323', monospace;
 }
 
+
+
 #char {
   position: relative;
   width: 67px;
@@ -36,17 +38,33 @@ body {
   z-index: 1;
 }
 
+#right-arrow {
+  position: relative;
+  left: 600px;
+  top: 450px;
+  width: 56px;
+  height: 60px;
+  animation: point-right 3s ease-in-out infinite;
+  cursor: pointer;
+  opacity: .7;
+  z-index: 1;
+}
+
+#codex {
+  position: relative;
+  left: 496px;
+  top: 255px;
+  width: 32px;
+  height: 32px;
+  animation: point 3s ease-in-out infinite;
+  cursor: pointer;
+  z-index: 1;
+}
+
 .container {
-  /* position: absolute; */
   display: grid;
-  /* width: 1500px; */
   grid-template-columns: repeat(3);
-  /* left: 50%;
-  top: 50%;
-  transform: translateY(-50%);
-  transform: translateX(-50%); */
   place-items: center; 
-  /* background-color: aliceblue; */
   width: 80%;
   margin: auto;
 }
@@ -58,7 +76,6 @@ body {
   width: 640px;
   height: 640px;
 }
-
 
 #text {
   font-family: 'VT323', monospace;
@@ -84,6 +101,7 @@ body {
   justify-content: center;
   padding: 25px;
 }
+
 #controls {
   position: absolute;
   top: 650px;
@@ -101,27 +119,12 @@ body {
   font-size: 20px;
 }
 
-/* #island {
-  box-sizing: border-box;
-} */
-
 #nav, #story {
   box-sizing: border-box;
   display: block;
   margin: auto;
   padding: 1rem;
 }
-
-/* #top-left {
-  border: 5px solid rgb(255, 255, 255);
-  display: block;
-  z-index: 2;
-} */
-
-/* area {
-  border: 5px solid rgb(255, 255, 255);
-  z-index: 2;
-} */
 
 .hidden {
   display: none;
@@ -159,19 +162,40 @@ div {
   animation-name: move;
   animation-duration: 4s;
   animation-fill-mode: forwards;
-
 }
 
 .secondMove {
   position: relative;
   animation-name: secondMove;
-  animation-duration: 4s;
+  animation-duration: 3s;
   animation-fill-mode: forwards;
+}
 
+.thirdMove {
+  position: relative;
+  animation: thirdMove 3s ease-in 1;
+  animation-fill-mode: forwards;
+}
+
+.fourthMove {
+  position: relative;
+  animation-name: fourthMove;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
 }
 
 .shake {
-  animation: shake 1s ease-in-out 3;
+  animation: shake 2.5s ease-in-out 3;
+}
+
+.char-attack {
+  animation: char-attack 0.5s linear 1;
+  animation-fill-mode: forwards;
+}
+
+.enemy-attack {
+  animation: enemy-attack  0.5s linear 1;
+  animation-fill-mode: forwards;
 }
 
 /* .move-back {
@@ -194,6 +218,22 @@ div {
   
 }
 
+@keyframes thirdMove {
+
+  100%   { transform: translateX(250px); }   
+  
+}
+
+@keyframes fourthMove {
+  0% {    top: 370px;
+    transform: translateX(0);
+          left: 160px;}
+  50% { transform: translate(460px, 0); }  
+  /* 60%   { transform: translateX(200px); } */
+  100% { transform: translate(600px, -150px); }   
+  
+}
+
 @keyframes point {
 	0% {
 
@@ -206,6 +246,50 @@ div {
 	100% {
 
 		transform: translatey(0px);
+	}
+}
+
+@keyframes point-right {
+	0% {
+
+		transform: translatex(0px);
+	}
+	50% {
+
+		transform: translatex(-20px);
+	}
+	100% {
+
+		transform: translatex(0px);
+	}
+}
+
+@keyframes char-attack {
+	0% {
+    top: 270px;
+    left: 340px;
+
+	}
+	50% {
+		transform: translatex(150px);
+	}
+	100% {
+    top: 270px;
+    left: 340px;
+	}
+}
+
+@keyframes enemy-attack {
+	0% {
+
+		transform: translatex(0px);
+	}
+	50% {
+		transform: translatex(-150px);
+	}
+	100% {
+
+		transform: translatex(0px);
 	}
 }
 
@@ -284,6 +368,20 @@ div {
   .button-75 span {
     line-height: 50px;
   }
+}
+
+progress[value] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+progress[value]::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+progress[value]::-webkit-progress-value {
+  border-radius: 15px;
+  background-color: red;
 }
 
 @keyframes shake {

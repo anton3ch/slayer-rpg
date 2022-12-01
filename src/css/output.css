@@ -36,17 +36,33 @@ body {
   z-index: 1;
 }
 
+#right-arrow {
+  position: relative;
+  left: 600px;
+  top: 450px;
+  width: 56px;
+  height: 60px;
+  animation: point-right 3s ease-in-out infinite;
+  cursor: pointer;
+  opacity: .7;
+  z-index: 1;
+}
+
+#codex {
+  position: relative;
+  left: 498px;
+  top: 255px;
+  width: 32px;
+  height: 32px;
+  animation: point 3s ease-in-out infinite;
+  cursor: pointer;
+  z-index: 1;
+}
+
 .container {
-  /* position: absolute; */
   display: grid;
-  /* width: 1500px; */
   grid-template-columns: repeat(3);
-  /* left: 50%;
-  top: 50%;
-  transform: translateY(-50%);
-  transform: translateX(-50%); */
   place-items: center;
-  /* background-color: aliceblue; */
   width: 80%;
   margin: auto;
 }
@@ -101,27 +117,12 @@ body {
   font-size: 20px;
 }
 
-/* #island {
-  box-sizing: border-box;
-} */
-
 #nav, #story {
   box-sizing: border-box;
   display: block;
   margin: auto;
   padding: 1rem;
 }
-
-/* #top-left {
-  border: 5px solid rgb(255, 255, 255);
-  display: block;
-  z-index: 2;
-} */
-
-/* area {
-  border: 5px solid rgb(255, 255, 255);
-  z-index: 2;
-} */
 
 .hidden {
   display: none;
@@ -165,12 +166,36 @@ div {
 .secondMove {
   position: relative;
   animation-name: secondMove;
-  animation-duration: 4s;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.thirdMove {
+  position: relative;
+  animation-name: thirdMove;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.fourthMove {
+  position: relative;
+  animation-name: fourthMove;
+  animation-duration: 3s;
   animation-fill-mode: forwards;
 }
 
 .shake {
-  animation: shake 1s ease-in-out 3;
+  animation: shake 2.5s ease-in-out 3;
+}
+
+.char-attack {
+  animation: char-attack 1s linear 1;
+  animation-fill-mode: backwards;
+}
+
+.enemy-attack {
+  animation: enemy-attack 1s linear 1;
+  animation-fill-mode: backwards;
 }
 
 /* .move-back {
@@ -201,6 +226,32 @@ div {
   }
 }
 
+@keyframes thirdMove {
+  0% {
+    top: 450px;
+    left: 275px;
+  }
+
+  100%   {
+    transform: translate(300px, 250px);
+  }
+}
+
+@keyframes fourthMove {
+  0% {
+    top: 450px;
+    left: 275px;
+  }
+
+  50%   {
+    transform: translate(200px, 250px);
+  }
+
+  100%   {
+    transform: translateY(100px);
+  }
+}
+
 @keyframes point {
   0% {
     transform: translatey(0px);
@@ -212,6 +263,48 @@ div {
 
   100% {
     transform: translatey(0px);
+  }
+}
+
+@keyframes point-right {
+  0% {
+    transform: translatex(0px);
+  }
+
+  50% {
+    transform: translatex(-20px);
+  }
+
+  100% {
+    transform: translatex(0px);
+  }
+}
+
+@keyframes char-attack {
+  0% {
+    transform: translatex(0px);
+  }
+
+  50% {
+    transform: translatex(40px);
+  }
+
+  100% {
+    transform: translatex(0px);
+  }
+}
+
+@keyframes enemy-atack {
+  0% {
+    transform: translatex(0px);
+  }
+
+  50% {
+    transform: translatex(-40px);
+  }
+
+  100% {
+    transform: translatex(0px);
   }
 }
 
@@ -297,6 +390,13 @@ div {
   .button-75 span {
     line-height: 50px;
   }
+}
+
+progress[value] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  background: red;
 }
 
 @keyframes shake {
