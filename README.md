@@ -1,11 +1,11 @@
-# (Application Name)
+# THE BUG SLAYER
 
-#### (Brief Description of Application)
+#### An epic quest to slay (programming) bugs
 
 #### By Alex Johnson
 #### Brian Noh
-#### Aitana 
-#### Anton Ch
+#### Aitana Shough
+#### Anton Chumachenko
 #### Daniel Yakovlev
 #### Vera Weikel
 
@@ -16,8 +16,8 @@
 * JavaScript
 * Node.js
 * bootstrap
-* jest
 * Webpack
+* (https://www.mapeditor.org/)[Tiled] Map Editor
 
 
 ## Description
@@ -32,9 +32,6 @@
 * build the project using $npm run build
 * start a live server with $npm run start
 
-dev note:
-* lint js files in src with $npm run lint (after writing more code)
-* run tests with Jest using $npm run test
 
 ## Known Bugs
 
@@ -45,6 +42,9 @@ dev note:
 
 ## Additional Thanks
 
+* Anicent Ruins overworld sprite pack from (https://rafaelmatos.itch.io/epic-rpg-world-pack-free-demo-ancient-ruins)[Rafael Matos]
+* Book/codex sprite from (https://raventale.itch.io/daily-doodles-pixelart-asset-pack)[Liz Molnar]
+* Dark Wizard enemy sprite from (https://luizmelo.itch.io/evil-wizard-2)[Luiz Melos]
 
 ## Future implementations
 
@@ -52,7 +52,7 @@ dev note:
 ## License
 MIT License
 
-Copyright (c) 2022 Alex Johnson et al (i'll add your names here before release)
+Copyright (c) 2022 Alex Johnson, Brian Noh, Aitana Shough, Anton Chumachenko, Daniel Yakovlev, Vera Weikel
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
