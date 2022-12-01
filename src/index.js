@@ -175,7 +175,7 @@ window.addEventListener("load", function() {
       document.getElementById("battleStats").setAttribute("class", "text-center");
       $("#intro-message").slideUp();
       $("#secondmap-message").show();
-      //$("#secondmap-message").fadeIn(2000);
+      // $("#secondmap-message").fadeIn(2000);
     }, 4000);
   });
 });
