@@ -21,7 +21,7 @@
 
 
 ## Description
-* There's an overworld and a battle system!
+Point-and-click game in which the player must use nothing but their mouse to find clues in order to complete the quest.
 
 
 ## Setup/Installation Requirements
